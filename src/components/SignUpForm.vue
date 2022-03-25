@@ -5,6 +5,7 @@
           <input type="Email" v-model="email" required>
           <label>Password :</label>
           <input type="password" v-model="password" required>
+          <div v-if="passwordError" class="error">{{passwordError}}</div>
           <label>Role :</label>
           <select v-model="role">
               <option value="frontend">Developer front end</option>
@@ -41,7 +42,8 @@ data(){
         role:'backend',
         term:false,
         tempSkill:'',
-        skills:[]
+        skills:[],
+        passwordError:''
       
     }
 },
@@ -60,7 +62,9 @@ methods:{
         })
     },
     handlSubmit(){
-        console.log('form submited')
+        // console.log('form submited')
+        // password validation
+        this.passwordError = this.password>5?'':'Password Must be At least 6 chars long'
     }
 }
 }
@@ -131,5 +135,13 @@ button{
 
 .submit{
     text-align: center;
+}
+
+.error{
+    color: #ff0062;
+    margin-top: 10px;
+    font-size: 0.8em;
+    font-weight: bold;
+
 }
 </style>
